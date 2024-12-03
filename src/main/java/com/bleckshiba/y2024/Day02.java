@@ -52,9 +52,8 @@ public class Day02 extends Solution {
                 Integer[] enhanced = new Integer[parts.size() - 1];
                 int index = 0;
 
-                for (int j = 0; j < parts.size(); j++) {
+                for (int j = 0; j < parts.size(); j++)
                     if (j != i) enhanced[index++] = parts.get(j);
-                }
 
                 if (isSafeReport(Arrays.asList(enhanced))) {
                     count++;
@@ -76,9 +75,6 @@ public class Day02 extends Solution {
             if (diff > 0) isDecreasing = false;
             if (!isIncreasing && !isDecreasing) return false;
         }
-
         return true;
     }
-
-
 }
