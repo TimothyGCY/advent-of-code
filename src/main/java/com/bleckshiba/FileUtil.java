@@ -9,7 +9,8 @@ import java.util.List;
 
 public class FileUtil {
 
-    private FileUtil() {}
+    private FileUtil() {
+    }
 
     public static List<String> readFile(int year, int day) throws IOException {
         final List<String> content = new ArrayList<>();
