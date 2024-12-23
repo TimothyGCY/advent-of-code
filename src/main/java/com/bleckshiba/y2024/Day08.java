@@ -6,7 +6,7 @@ import com.bleckshiba.Solution;
 import java.io.IOException;
 import java.util.*;
 
-public class Day08 extends Solution {
+public class Day08 extends Solution<Integer> {
 
   private final char[][] map;
 
@@ -26,7 +26,7 @@ public class Day08 extends Solution {
   }
 
   @Override
-  public int solvePart1() {
+  public Integer solvePart1() {
     Set<String> nodes = new HashSet<>();
     Map<Character, Antenna> antennas = init();
     for (Antenna antenna : antennas.values()) {
@@ -36,7 +36,7 @@ public class Day08 extends Solution {
   }
 
   @Override
-  public int solvePart2() {
+  public Integer solvePart2() {
     Set<String> nodes = new HashSet<>();
     Map<Character, Antenna> antennas = init();
     for (Antenna antenna : antennas.values()) {

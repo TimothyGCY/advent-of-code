@@ -1,14 +1,8 @@
 package com.bleckshiba;
 
-abstract public class Solution {
+public abstract class Solution<T> {
 
-    protected int solvePart1() {
-        System.out.println("Solving part 1");
-        return -1;
-    }
+    protected abstract T solvePart1();
 
-    protected int solvePart2() {
-        System.out.println("Solving part 2");
-        return -1;
-    }
+    protected abstract T solvePart2();
 }

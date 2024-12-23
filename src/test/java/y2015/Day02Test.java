@@ -12,17 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Day02Test {
 
-    private static List<String> data;
+  private static List<String> data;
 
-    @BeforeAll
-    static void init() throws IOException {
-        data = FileUtil.readFile(2015, 2);
-    }
+  @BeforeAll
+  static void init() throws IOException {
+    data = FileUtil.readFile(2015, 2);
+  }
 
-    @Test
-    void testSolvePart2() {
-        Day02 d = new Day02(data);
-        assertEquals(48, d.solvePart2());
-    }
-
+  @Test
+  void testSolvePart2() {
+    Day02 d = new Day02(data);
+    assertEquals(48, d.solvePart2());
+  }
 }
