@@ -30,7 +30,7 @@ public class Day06 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     Set<String> route = new HashSet<>();
 
     int[] pos = getStartingPosition();
@@ -73,7 +73,7 @@ public class Day06 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     return -1;
   }
 

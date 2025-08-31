@@ -22,7 +22,7 @@ public class Day03 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     int total = 0;
 
     Matcher matcher = createMatcher("(mul\\((\\d{1,3}),(\\d{1,3})\\))");
@@ -32,7 +32,7 @@ public class Day03 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     int total = 0;
 
     Matcher matcher = createMatcher("(mul\\((\\d{1,3}),(\\d{1,3})\\)|do\\(\\)|don't\\(\\))");

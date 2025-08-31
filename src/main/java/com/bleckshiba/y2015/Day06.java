@@ -28,7 +28,7 @@ public class Day06 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     Map<String, Boolean> board = new HashMap<>();
 
     for (String line : data) {
@@ -45,7 +45,7 @@ public class Day06 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     int[][] board = new int[1000][1000];
     Arrays.stream(board).forEach(row -> Arrays.fill(row, 0));
 

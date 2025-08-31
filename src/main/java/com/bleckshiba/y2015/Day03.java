@@ -24,7 +24,7 @@ public class Day03 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     int x = 1;
     int y = 1;
 
@@ -49,7 +49,7 @@ public class Day03 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     int sx = 1;
     int sy = 1;
     int rx = 1;

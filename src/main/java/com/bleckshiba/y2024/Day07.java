@@ -4,12 +4,12 @@ import com.bleckshiba.Solution;
 
 public class Day07 extends Solution<Integer> {
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     return 0;
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     return 0;
   }
 }

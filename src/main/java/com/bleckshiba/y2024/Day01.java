@@ -32,7 +32,7 @@ public class Day01 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart1() {
+  public Integer solvePart1() {
     int total = 0;
     for (int i = 0; i < left.size(); i++) {
       total += Math.abs(left.get(i) - right.get(i));
@@ -42,7 +42,7 @@ public class Day01 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     int total = 0;
     for (int l : left) {
       total += l * right.stream().filter(x -> x.equals(l)).toList().size();

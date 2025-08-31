@@ -39,7 +39,7 @@ public class Day04 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     int i = 1;
     while (true) {
       String val = String.format("%s%d", secret, i);

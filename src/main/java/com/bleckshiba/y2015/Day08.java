@@ -35,7 +35,7 @@ public class Day08 extends Solution<Integer> {
   }
 
   @Override
-  protected Integer solvePart2() {
+  public Integer solvePart2() {
     return -1;
   }
 }
