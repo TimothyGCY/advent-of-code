@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day08Test {
+class Day08Test {
 
   private static List<String> data;
 
@@ -23,5 +23,11 @@ public class Day08Test {
   void testSolvePart1() {
     Day08 solution = new Day08(data);
     assertEquals(12, solution.solvePart1());
+  }
+
+  @Test
+  void testSolvePart2() {
+    Day08 solution = new Day08(data);
+    assertEquals(19, solution.solvePart2());
   }
 }
