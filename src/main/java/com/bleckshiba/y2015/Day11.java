@@ -3,7 +3,6 @@ package com.bleckshiba.y2015;
 import com.bleckshiba.Solution;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Day11 extends Solution<String> {
   private static final char MIN = 'a';
