@@ -1,23 +1,27 @@
 package com.bleckshiba.y2015;
 
-import com.bleckshiba.FileUtil;
 import com.bleckshiba.Solution;
 
 public class Day10 extends Solution<String> {
 
   private final String data;
 
-  private final int repetition;
+  private int repetition;
 
   public Day10(String data, int repetition) {
     this.data = data;
     this.repetition = repetition;
   }
 
+  public void setRepetition(int repetition) {
+    this.repetition = repetition;
+  }
+
   public static void main(String[] args) {
-    Day10 solution = new Day10("1321131112", 50);
-    final String part1  = solution.solvePart1();
-    System.out.println(part1.length());
+    Day10 solution = new Day10("1321131112", 40);
+    System.out.println(solution.solvePart1().length());
+    solution.setRepetition(50);
+    System.out.println(solution.solvePart1().length());
   }
 
   @Override
