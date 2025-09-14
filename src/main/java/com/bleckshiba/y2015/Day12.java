@@ -41,7 +41,8 @@ public class Day12 extends Solution<Long> {
     try {
       JsonNode root = mapper.readTree(data);
       total = sumNumbers(root);
-    } catch (JsonProcessingException ignored) {
+    } catch (JsonProcessingException e) {
+      System.err.println("Error while parsing json: " + e.getMessage());
     }
     return total;
   }
@@ -51,8 +52,7 @@ public class Day12 extends Solution<Long> {
     if (node.isNumber())
       return node.asLong();
 
-    if (node.isTextual())
-      if ("red".equals(node.asText()))
+    if (node.isTextual() && "red".equals(node.asText()))
         return 0;
 
     if (node.isArray())
