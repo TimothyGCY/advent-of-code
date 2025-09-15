@@ -18,7 +18,7 @@ public class Day17 extends Solution<Integer> {
 
   private List<Integer> containers;
 
-  private static Map<Integer, Integer> combinationsByCount = new HashMap<>();
+  private static final Map<Integer, Integer> combinationsByCount = new HashMap<>();
 
   public Day17(List<String> data, int target) {
     this.data = data;
