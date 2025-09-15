@@ -5,16 +5,11 @@ import com.bleckshiba.Solution;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static com.bleckshiba.y2015.Day06.COORD_FORMAT;
 
 public class Day06 extends Solution<Integer> {
 
-  public static final String COORD_FORMAT = "%d,%d";
-
+  private static final int BOARD_SIZE = 1000;
   private final List<String> data;
 
   public Day06(List<String> data) {
@@ -29,8 +24,7 @@ public class Day06 extends Solution<Integer> {
 
   @Override
   public Integer solvePart1() {
-    Map<String, Boolean> board = new HashMap<>();
-
+    boolean[][] board = new boolean[BOARD_SIZE][BOARD_SIZE];
     for (String line : data) {
       String[] parts = line.split(" ");
       if (parts.length == 4) {
@@ -41,12 +35,17 @@ public class Day06 extends Solution<Integer> {
       }
     }
 
-    return board.size();
+    int total = 0;
+    for (int x = 0; x < BOARD_SIZE; x++)
+      for (int y = 0; y < BOARD_SIZE; y++)
+        if (board[x][y])
+          total++;
+    return total;
   }
 
   @Override
   public Integer solvePart2() {
-    int[][] board = new int[1000][1000];
+    int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
     Arrays.stream(board).forEach(row -> Arrays.fill(row, 0));
 
     for (String line : data) {
@@ -60,115 +59,92 @@ public class Day06 extends Solution<Integer> {
     }
 
     int total = 0;
-    for (int x = 0; x < 1000; x++) {
-      for (int y = 0; y < 1000; y++) {
+    for (int x = 0; x < BOARD_SIZE; x++)
+      for (int y = 0; y < BOARD_SIZE; y++)
         total += board[x][y];
-      }
-    }
     return total;
   }
 }
 
+
 interface Operation {
-  Map<String, Boolean> toggleOnOff(Map<String, Boolean> src, String from, String to);
+  boolean[][] toggleOnOff(boolean[][] src, String from, String to);
 
   int[][] toggleBrightness(int[][] src, String from, String to);
 }
 
+
 enum Action {
   TURN_ON(
-      "turn on",
-      new Operation() {
-        @Override
-        public Map<String, Boolean> toggleOnOff(Map<String, Boolean> src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              String cur = String.format(COORD_FORMAT, x, y);
-              if (!Boolean.TRUE.equals(src.get(cur))) {
-                src.put(cur, true);
-              }
-            }
-          }
-          return src;
-        }
+    "turn on",
+    new Operation() {
+      @Override
+      public boolean[][] toggleOnOff(boolean[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] = true;
+        return src;
+      }
 
-        @Override
-        public int[][] toggleBrightness(int[][] src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              src[x][y] += 1;
-            }
-          }
-          return src;
-        }
-      }),
+      @Override
+      public int[][] toggleBrightness(int[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] += 1;
+        return src;
+      }
+    }),
 
   TURN_OFF(
-      "turn off",
-      new Operation() {
-        @Override
-        public Map<String, Boolean> toggleOnOff(Map<String, Boolean> src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              String cur = String.format(COORD_FORMAT, x, y);
-              src.remove(cur);
-            }
-          }
-          return src;
-        }
+    "turn off",
+    new Operation() {
+      @Override
+      public boolean[][] toggleOnOff(boolean[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] = false;
+        return src;
+      }
 
-        @Override
-        public int[][] toggleBrightness(int[][] src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              src[x][y] += -1;
-              src[x][y] = Math.max(0, src[x][y]);
-            }
-          }
-          return src;
-        }
-      }),
-
+      @Override
+      public int[][] toggleBrightness(int[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] = Math.max(0, --src[x][y]);
+        return src;
+      }
+    }),
   TOGGLE(
-      "toggle",
-      new Operation() {
-        @Override
-        public Map<String, Boolean> toggleOnOff(Map<String, Boolean> src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              String cur = String.format(COORD_FORMAT, x, y);
-              if (src.containsKey(cur)) {
-                src.remove(cur);
-              } else {
-                src.putIfAbsent(cur, true);
-              }
-            }
-          }
-          return src;
-        }
+    "toggle",
+    new Operation() {
+      @Override
+      public boolean[][] toggleOnOff(boolean[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] = !src[x][y];
+        return src;
+      }
 
-        @Override
-        public int[][] toggleBrightness(int[][] src, String from, String to) {
-          int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
-          int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
-          for (int x = f[0]; x <= t[0]; x++) {
-            for (int y = f[1]; y <= t[1]; y++) {
-              src[x][y] += 2;
-            }
-          }
-          return src;
-        }
-      }),
+      @Override
+      public int[][] toggleBrightness(int[][] src, String from, String to) {
+        int[] f = Arrays.stream(from.split(",")).mapToInt(Integer::parseInt).toArray();
+        int[] t = Arrays.stream(to.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int x = f[0]; x <= t[0]; x++)
+          for (int y = f[1]; y <= t[1]; y++)
+            src[x][y] += 2;
+        return src;
+      }
+    }),
   ;
 
   final String cmd;
