@@ -166,7 +166,7 @@ public class Day21 extends Solution<Integer> {
     }
 
     protected void onDamage(int damage) {
-      this.hp -= (damage - this.defense);
+      this.hp -= Math.max(1, (damage - this.defense));
     }
 
     public boolean isAlive() {
