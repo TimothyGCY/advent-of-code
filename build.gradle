@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.bleckshiba'
 version = '1.0-SNAPSHOT'
+
+jacoco {
+    toolVersion = '0.8.13'
+}
 
 repositories {
     mavenCentral()
@@ -19,4 +24,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
