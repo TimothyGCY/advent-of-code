@@ -30,19 +30,16 @@ class Day03Test {
 
   @Test
   void testSolvePart2() {
-    assertEquals(0, solution.solvePart2());
-  }
-
-  @Test
-  void testGetMax() {
-    assertEquals(98, solution.getLargestCombination("987654321111111", 2));
-    assertEquals(89, solution.getLargestCombination("811111111111119", 2));
-    assertEquals(78, solution.getLargestCombination("234234234234278", 2));
-    assertEquals(92, solution.getLargestCombination("818181911112111", 2));
+    assertEquals(3121910778619L, solution.solvePart2());
   }
 
   @Test
   void testGetLargestCombination() {
+    assertEquals(98, solution.getLargestCombination("987654321111111", 2));
+    assertEquals(89, solution.getLargestCombination("811111111111119", 2));
+    assertEquals(78, solution.getLargestCombination("234234234234278", 2));
+    assertEquals(92, solution.getLargestCombination("818181911112111", 2));
+
     assertEquals(987654321111L, solution.getLargestCombination("987654321111111", 12));
     assertEquals(811111111119L, solution.getLargestCombination("811111111111119", 12));
     assertEquals(434234234278L, solution.getLargestCombination("234234234234278", 12));
